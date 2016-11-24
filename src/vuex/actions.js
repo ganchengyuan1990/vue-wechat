@@ -24,6 +24,15 @@ export const get_menu_wechat_list = ({ dispatch }, fn) => {
     dispatch('SET_MENU_WECHAT_LIST', list)
     !!fn && fn()
 }
+
+//朋友圈信息获取
+export const get_find_friends_list = ({ dispatch }, fn) => {
+    let friends = require('../mock/friends')
+    dispatch('SET_FIND_FRIENDS_LIST', friends)
+    !!fn && fn()
+}
+
+
 export const set_chat = ({ dispatch }, model) => {
     dispatch('CHAT', model)
 }

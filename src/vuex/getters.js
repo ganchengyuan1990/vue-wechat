@@ -23,3 +23,4 @@ export const contact_friends = ({ contacts }) => contacts.contact_friends
 //find
 export const iframe_url = ({ find }) => find.iframe_url
 export const iframe_title = ({ find }) => find.iframe_title
+export const friends = ({ find }) => find.friends

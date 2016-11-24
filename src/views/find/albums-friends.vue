@@ -17,7 +17,18 @@
                             </div>
                         </header>
                         <section class="home-content">
-
+                            <ul class="message" v-for="item in friends">
+                                <li>
+                                    <img src="{{item.imgUrl}}" alt="">
+                                    <span>{{item.content}}</span>
+                                    <span class='commentNum'>+{{commentNum}}</span>
+                                    <p>
+                                        <span class="time">{{item.time}}</span>
+                                        <button class="comment" @click="comment">点赞</button>
+                                        <button class="comment" @click="comment(true)">点踩</button>
+                                    </p>
+                                </li>
+                            </ul>
                         </section>
                     </div>
                 </div>
@@ -34,13 +45,22 @@
 import dynamics from '../../assets/js/dynamics'
 import topHandle from 'topHandle'
 
+import {
+    friends,
+    wechat_list
+} from 'getters'
+import {
+    get_find_friends_list,
+} from '../../vuex/actions'
+
 export default {
     vuex: {
         getters: {
-
+            friends,
+            wechat_list
         },
         actions: {
-
+            get_find_friends_list,
         }
     },
     route: {
@@ -66,6 +86,7 @@ export default {
         return {
             dragging: false,
             isDragging: false,
+            commentNum: 0,
             start: {
                 y: 0
             },
@@ -122,6 +143,13 @@ export default {
                     duration: 350,
                 })
             }
+        },
+        comment : function(data) {
+            if(data == true) {
+                this.commentNum = 0;
+            } else {
+                this.commentNum ++ ;
+            }
         }
     },
     computed: {
@@ -148,6 +176,9 @@ export default {
         }
     },
     created() {
+        this.get_find_friends_list(() => {
+            console.log(this.friends);
+        })
     },
     ready() {
     },
@@ -233,5 +264,20 @@ export default {
 .home-content{
     padding-top: 45px;
     min-height: 500px;
+}
+ul.message {
+    margin: 20px;
+}
+ul.message li {
+    margin: 30px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FAEBD7; 
+}
+li img {
+    height: 40px;
+    width: 40px;
+}
+.comment, .commentNum {
+    float: right;
 }
 </style>

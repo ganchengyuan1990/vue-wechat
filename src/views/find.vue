@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="weui_cell" href="javascript:;">
+                <div class="weui_cell" href="javascript:;" v-touch:tap='hrefGameCenter()'>
                     <div class="weui_cell_hd"><img src="../assets/images/find_icon-moregame.png"></div>
                     <div class="weui_cell_bd weui_cell_primary">
                         <p>游戏</p>
@@ -113,6 +113,13 @@ export default {
     methods: {
         hrefShopping(){
             this.set_iframe_url({title:"京东购物",url:"//wqs.jd.com"},()=>{
+                this.$router.go({
+                    path: "/find/shopping"
+                })    
+            });
+        },
+        hrefGameCenter() {
+            this.set_iframe_url({title:"QQ游戏",url:"//jasonGan.cn/Sandy"},()=>{
                 this.$router.go({
                     path: "/find/shopping"
                 })    

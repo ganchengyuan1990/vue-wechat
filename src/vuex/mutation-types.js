@@ -13,3 +13,5 @@ export const DELETE_NEWS = 'DELETE_NEWS'
 export const PERSON_INFO = 'PERSON_INFO'
 export const CONTACT_FRIENDS = 'CONTACT_FRIENDS'
 export const FRIEND_ID = 'FRIEND_ID'
+
+export const SET_FIND_FRIENDS_LIST = 'SET_FIND_FRIENDS_LIST'

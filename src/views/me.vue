@@ -80,6 +80,9 @@ export default {
                 this.decline = _decline
                 this.$parent.$emit('route-pipe', _decline)
             }
+        },
+        created() {
+            debugger
         }
 }
 </script>
