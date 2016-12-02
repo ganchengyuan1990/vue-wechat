@@ -1,5 +1,5 @@
 <template>
-    <div class="component-dialogue-bar-person">
+    <div class="component-dialogue-bar-person" :class='display_more_tools?"pool_up":""'>
         <span class="iconfont icon-dialogue-jianpan" v-show="way==='say'" v-touch:tap="switch_way('txt')"></span>
         <span class="iconfont icon-dialogue-voice" v-show='way==="txt"' v-touch:tap='switch_way("say")'></span>
         <!--say-->
@@ -14,7 +14,7 @@
             <input class="chat-txt" type="text">
         </div>
         <span class="expression iconfont icon-dialogue-smile"></span>
-        <span class="more iconfont icon-dialogue-jia"></span>
+        <span class="more iconfont icon-dialogue-jia" @click="openMoreTools"></span>
         <!--tips-->
         <div class="recording" v-show="state_say">
             <div class="recording-voice" v-show='!say_cancel&&state_say'>
@@ -41,6 +41,14 @@
         </div>
 
     </div>
+    <div class="more-tools"  v-show="display_more_tools">
+        <span class="button">图片</span>
+        <span class="button">小视频 </span>
+        <span class="button">我的收藏</span>
+        <span class="button">位置</span>
+        <span class="button">名片</span>
+        <span class="button">语音输入</span>
+    </div>
 </template>
 <script>
 export default {
@@ -53,6 +61,7 @@ export default {
             way: 'txt',
             state_say: false, //'chat-say_touched'
             say_cancel:false,
+            display_more_tools: false,
         }
     },
     methods: {
@@ -67,7 +76,31 @@ export default {
         },
         switch_say_cancel(){
             this.say_cancel = true;
+        },
+        openMoreTools() {
+            this.display_more_tools = !this.display_more_tools;
         }
     }
 }
 </script>
+
+<style>
+    .more-tools {
+        height: 100px;
+        width: 100%;
+        background: #eeeeee;
+        position: fixed;
+        bottom: 0;
+    }
+    .pool_up {
+        bottom: 100px;
+    }
+    span.button {
+        padding: 5px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        border: 1px solid red;
+        margin: 20px;
+    }
+</style>

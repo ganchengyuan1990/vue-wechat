@@ -113,6 +113,7 @@ export default {
             //计算未读数量
             let sum = 0;
             console.log(this.wechat_list)
+            debugger
             this.wechat_list.forEach(({
                 chatBaseModel,
                 chatConfigModel

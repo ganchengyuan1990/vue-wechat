@@ -1,7 +1,7 @@
 <template>
     <div class="_full_inner _effect component-me" :class="{'_effect--30':decline}">
         <div class="weui_cells weui_cells_access me-line">
-            <a class="weui_cell " href="javascript:;">
+            <a class="weui_cell " href="javascript:;" @click="gotoUrl">
                 <div class="weui_cell_hd">
                     <img src="//images2015.cnblogs.com/blog/528573/201609/528573-20160925223248967-1344840692.jpg">
                 </div>
@@ -69,7 +69,23 @@
     <router-view transition="cover"></router-view>
 </template>
 <script>
+
+import {
+    set_iframe_url,
+    set_menu_active
+} from 'actions'
+
+
 export default {
+    vuex: {
+        getters: {
+
+        },
+        actions: {
+            set_iframe_url,
+            set_menu_active
+        }
+    },
     data() {
             return {
                 decline: false
@@ -81,8 +97,17 @@ export default {
                 this.$parent.$emit('route-pipe', _decline)
             }
         },
+        methods: {
+            gotoUrl() {
+                this.set_iframe_url({"title": "朋友圈",url:"//wqs.jd.com"}, ()=>{
+                    this.$router.go({
+                        path: "/find/shopping"
+                    })    
+                });
+            }
+        },
         created() {
-            debugger
+            
         }
 }
 </script>
